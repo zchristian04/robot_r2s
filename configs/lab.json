@@ -1,0 +1,157 @@
+{
+  "_note": "Lab Rizon 4s + GN01 cell. Values marked VERIFY come from flexiv_control (rizon4s_actahead_lab.yaml, safety/actahead_lab.yaml), aioflexiv defaults or newton_handoff_20260921 and must be checked on the real cell at low speed before the first session. The robot serial number is never stored here; pass it with --robot-sn or ROBOT_SN.",
+  "model": {
+    "path": "~/newton-sim/newton_handoff_20260921/scene_robot_only.xml",
+    "tcp_site": "gn01_grasp_center_site",
+    "arm_joints": [
+      "joint1",
+      "joint2",
+      "joint3",
+      "joint4",
+      "joint5",
+      "joint6",
+      "joint7"
+    ],
+    "gripper_joint": "gn01_finger_width_joint",
+    "gripper_actuator": "gn01_finger_width_pos",
+    "table_geom": "lab_table",
+    "_frames": "The model world frame is used as the robot frame. API coordinates are model coordinates shifted so the table top is z = 0.",
+    "table_top_z": 0.02
+  },
+  "robot": {
+    "gripper_name": "Flexiv-GN01",
+    "q_home": [
+      -0.00109,
+      -0.700414,
+      -0.002085,
+      1.572872,
+      0.004996,
+      0.688793,
+      0.003576
+    ],
+    "gripper_home_width": 0.085,
+    "gripper_max_width": 0.1,
+    "gripper_force_cap": 25.0,
+    "gripper_speed": 0.05,
+    "_q_home": "VERIFY: lab home posture from flexiv_control rizon4s_actahead_lab.yaml"
+  },
+  "control": {
+    "rate_hz": 100.0,
+    "travel_kp": [
+      80,
+      80,
+      80,
+      80,
+      80,
+      80,
+      80
+    ],
+    "travel_kd": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "contact_kp": [
+      80,
+      80,
+      80,
+      80,
+      80,
+      80,
+      80
+    ],
+    "contact_kd": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "settle_tol_rad": 0.01,
+    "settle_timeout_s": 3.0,
+    "_gains": "VERIFY: joint-impedance gains are the aioflexiv README example values, not tuned for this cell"
+  },
+  "safety": {
+    "_source": "VERIFY: flexiv_control configs/safety/actahead_lab.yaml; workspace is in the model (robot) frame",
+    "workspace": {
+      "x": [
+        0.25,
+        0.95
+      ],
+      "y": [
+        -0.45,
+        0.45
+      ],
+      "z": [
+        0.01,
+        0.7
+      ]
+    },
+    "max_tcp_speed": 0.15,
+    "max_tcp_angular_speed": 0.45,
+    "max_joint_speed": 0.3,
+    "_max_joint_speed": "VERIFY: aioflexiv move() default 1.0 rad/s times flexiv_control max_joint_speed_scale 0.30",
+    "joint_margin_rad": 0.08,
+    "max_wrench": [
+      40,
+      40,
+      40,
+      5,
+      5,
+      5
+    ],
+    "max_tracking_error_rad": 0.15,
+    "state_timeout_s": 0.2,
+    "table_clearance": 0.0,
+    "_table_clearance": "VERIFY: minimum distance kept between arm/gripper geometry and the table outside contact segments"
+  },
+  "primitives": {
+    "_note": "VERIFY: travel height, standoff and retreat are placeholders carried over from the sim server",
+    "safe_z": 0.2,
+    "push_standoff": 0.03,
+    "retreat": 0.02,
+    "max_push_distance": 0.15,
+    "max_touch_travel": 0.1,
+    "max_lift": 0.1,
+    "touch_stop_force": [
+      0.5,
+      10.0
+    ]
+  },
+  "approval": {
+    "contact": true,
+    "free": true,
+    "reset": true
+  },
+  "camera": {
+    "name": "zed",
+    "sim_camera": "zed2i_rgbd_sim",
+    "width": 1280,
+    "height": 720,
+    "action_frames_hz": 5.0,
+    "_real": "VERIFY: ZED 2i serial, depth mode and depth units on the lab PC",
+    "frames_width": 320,
+    "frames_height": 180
+  },
+  "logging": {
+    "log_hz": 100.0
+  },
+  "server": {
+    "scenes": [
+      "scene_01"
+    ],
+    "tokens_file": "~/.config/robot_r2s/tokens.json",
+    "log_dir": "~/.local/share/robot_r2s/logs",
+    "rerun": "spawn"
+  },
+  "sim": {
+    "scene": null,
+    "_scene": "optional MJCF scene containing the lab robot plus test objects; default is model.path"
+  }
+}

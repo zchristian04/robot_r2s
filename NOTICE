@@ -1,0 +1,16 @@
+robot_r2s
+
+Parts of this project are adapted from:
+
+flexiv_control (https://github.com/Adaptive-Robotics-Lab/flexiv_control)
+Copyright 2026 Zihao Lu. Licensed under the Apache License, Version 2.0.
+  - GN01 gripper bring-up and command sequence (robot_r2s/backends/real.py)
+  - lab configuration values: gripper device name, home posture, gripper home
+    width, and the safety-profile numbers in configs/lab.json
+
+aioflexiv (https://github.com/younghyopark/aioflexiv)
+Copyright 2026 Younghyo Park. Licensed under the Apache License, Version 2.0.
+  - used as a dependency; robot_r2s/backends/real.py subclasses its controller
+
+"Flexiv", "Rizon", "Grav", "GN01" and "RDK" are trademarks of their respective
+owner and are used only to describe compatibility.

@@ -1,0 +1,18 @@
+[project]
+name = "robot_r2s"
+version = "0.1.0"
+description = "Robot server for the Agentic Real2Sim real-robot runs (Flexiv Rizon 4s + Grav GN01)"
+requires-python = ">=3.10"
+dependencies = ["numpy", "mujoco>=3.2", "fastapi", "uvicorn", "requests"]
+
+[project.optional-dependencies]
+real = ["aioflexiv==0.3.0", "flexivrdk"]
+viz = ["rerun-sdk"]
+test = ["pytest", "httpx"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["robot_r2s", "robot_r2s.backends"]
